@@ -1,0 +1,9 @@
+.header {
+    background-color: #fff159;
+    padding: 10px 10px 10px; /* quando tem 4 valor: top, right, bottom, left*/
+}
+
+.header__logo {
+    height: 34px;
+    width: 134px;
+}
