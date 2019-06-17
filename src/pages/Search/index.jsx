@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import './style.css'
 
 class Search extends Component {
     constructor() {
@@ -35,13 +36,13 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text" onChange={ this.onSearch } />
-
-                <ul>
-                    {this.state.results.map(this.renderItem) }
-                </ul>
-
+            <div className="mdl-grid">
+                <div className="mdl-cell--12-col">
+                    <input type="text" className="busca" onChange={ this.onSearch } placeholder="Buscar produtos, marcas e muito mais..." maxLength="120" tabIndex="2" />
+                    <ul>
+                        {this.state.results.map(this.renderItem) }
+                    </ul>
+                </div>
             </div>
 
         );
@@ -49,13 +50,20 @@ class Search extends Component {
 
     renderItem(item) {
         return (
-            <li key={ item.id }>
-                <span>{ item.id }</span>
-                <span>{ item.title }</span>
-                &#160;
-                <Link to={ `/Details/${item.id}` }>
-                    Abrir produto
-                </Link>
+            <li key={ item.id } className="pesquisa__item">
+                <div className="mdl-grid">
+                    <div className="mdl-cell--12-col">
+                        <Link to={ `/Details/${item.id}` }>
+                            <h6>{ item.title }</h6>
+                        </Link>
+                    </div>
+                    <div className="mdl-cell--12-col pesquisa__preco">
+                        R$ {item.price.toFixed(2).replace(".", ",") }
+                    </div>
+                    <div className="mdl-cell--12-col">
+                        { item.sold_quantity } vendidos
+                    </div>
+                </div>
             </li>
         );
     }

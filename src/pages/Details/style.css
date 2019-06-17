@@ -1,0 +1,26 @@
+.produto__info {
+    text-align: justify;
+
+}
+
+.button {
+    background-color: #3483fa;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+.produto__comprar {
+    border-radius: 4px;
+}
+
+.produto__descricao {
+    text-align: justify;
+    display: block;
+    white-space: pre;
+}

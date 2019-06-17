@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { Button } from 'react-dom';
 import axios from 'axios';
+import './style.css'
 
 class Details extends Component {
     constructor(props) {
@@ -9,8 +11,9 @@ class Details extends Component {
             loading: true,
             data: {},
         };
-    }
 
+    }
+    
     componentDidMount() {
         axios.all([
             axios.get(`https://api.mercadolibre.com/items/${this.state.id}`),
@@ -33,6 +36,10 @@ class Details extends Component {
             });
     }
 
+    handleClick(url) {
+        window.location.href = url;
+    }
+
     renderConteudo() {
         const { data } = this.state;
         return (
@@ -41,15 +48,20 @@ class Details extends Component {
                     <header className="mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                         <img src={ data.pictures[0].url } />
                     </header>
-                    <div className="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                    <div className="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone produto__info">
                         <div className="mdl-card__supporting-text">
+                            { data.sold_quantity } vendidos
                             <h5>{ data.title }</h5>
-                            { data.price}
+                            <h3>{ "R$ " + data.price.toFixed(2).replace(".", ",") }</h3>
                         </div>
-                        <button>Comprar</button>
+                        
+                        <div className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--0-col-phone">
+                            <button className="produto__comprar button" onClick={ () => this.handleClick(data.permalink) }>Comprar no Mercado Livre</button>
+                        </div>
                     </div>
-                    <p className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone ">
-                        { data.description}
+                    <p className="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone produto__descricao">
+                        <h3>Descrição</h3>
+                        { data.description }
                     </p>
                 </section>
             </Fragment>
@@ -63,6 +75,7 @@ class Details extends Component {
             <div>Carregando...</div> :
             this.renderConteudo();
     }
+    
 }
 
 export default Details;

@@ -1,0 +1,19 @@
+input.busca {
+    padding: 10px 10px 10px; /* quando tem 4 valor: top, right, bottom, left*/
+    width: 90%;
+    max-width: 800px;
+}
+input::placeholder {
+    color: #cccccc;
+}
+
+.pesquisa__preco {
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+li.pesquisa__item {
+    list-style: none;
+    text-align: justify;
+    border-bottom: 2px solid #cccccc;
+}
